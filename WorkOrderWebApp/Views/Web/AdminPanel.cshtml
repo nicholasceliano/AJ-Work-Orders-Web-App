@@ -1,0 +1,204 @@
+﻿<div class="disableReferenceDataDialog"></div>
+
+<h3>@ViewBag.Message</h3>
+
+<table id="pageTitle">
+    <tr>
+        <td colspan="2">
+            <h2>@ViewBag.Title</h2>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" class="refDataSection">
+            <div id="adminUserDialog" style="display:none;"></div>
+            <h4>Web Users</h4>
+            <table id="users" class="adminUsersTable">
+                <thead>
+                    <tr>
+                        <th id="hID" style="width:5%;" onclick="PageData.Sort()">ID</th>
+                        <th id="hFirstName" style="width:20%;" onclick="PageData.Sort()">First Name</th>
+                        <th id="hLastName" style="width:20%;" onclick="PageData.Sort()">Last Name</th>
+                        <th id="hEmail" style="width:25%;" onclick="PageData.Sort()">Email Address</th>
+                        <th id="hWebUser" style="width:10%;" onclick="PageData.Sort()">Web User?</th>
+                        <th id="hAdmin" style="width:10%;" onclick="PageData.Sort()">Admin</th>
+                        <th id="hActive" style="width:10%;" onclick="PageData.Sort()">Active<input type="checkbox" title="" onchange="AdminPanel.ShowDisabledRefData('users')" data-bind="checked: users.viewDisabledData() ? true : false" /></th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: users.usersDataPage()">
+                    <tr data-bind="event:{ click: DialogBox.ShowUser.bind($data) }, style: { color: $data.Enabled() ? 'black': '#AAA' }">
+                        <td>
+                            <span data-bind="text: $data.ID()"></span>
+                        </td>
+                        <td>
+                            <span data-bind="text: $data.FirstName()"></span>
+                        </td>
+                        <td>
+                            <span data-bind="text: $data.LastName()"></span>
+                        </td>
+                        <td>
+                            <span data-bind="text: $data.Email()"></span>
+                        </td>
+                        <td>
+                            <span data-bind="text: $data.WebUserText()"></span>
+                        </td>
+                        <td>
+                            <span data-bind="text: $data.AdminText()"></span>
+                        </td>
+                        <td>
+                            <span data-bind="text: $data.EnabledText()"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div id="usersPageControl" class="pageControl" style="width:70%;">
+                <div id="leftHalf">
+                    <div id="addNewWrap">
+                        <div id="addNewBtnImg" class="addRow" onclick="DialogBox.AddNewUser();"></div>
+                        <span id="addNewBtnTxt" onclick="DialogBox.AddNewUser();">Add New</span>
+                    </div>
+                </div>
+                <div id="rightHalf" data-bind="visible: users.totalPossiblePages() > 0 ? true : false">
+                    <img data-bind="attr: { src: users.pageNumber() > 0 ? '/Content/images/left-16-black.png' : '/Content/images/left-16-gray.png' }" onclick="PageData.PreviousPage()" />
+                    <label data-bind="text: 'Page ' + (users.pageNumber() + 1) + ' of ' + (users.totalPossiblePages() + 1)"></label>
+                    <img data-bind="attr: { src: users.pageNumber() < users.totalPossiblePages() ? '/Content/images/right-16-black.png' : '/Content/images/right-16-gray.png' }" onclick="PageData.NextPage()" />
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="refDataSection">
+            <h4>Sites</h4>
+            <table id="sites" class="adminReferenceDataTable">
+                <thead>
+                    <tr>
+                        <th id="hID" style="width:20%;" onclick="PageData.Sort()">ID</th>
+                        <th id="hValue" onclick="PageData.Sort()">Value</th>
+                        <th><input type="checkbox" title="" onchange="AdminPanel.ShowDisabledRefData('sites')" data-bind="checked: sites.viewDisabledData() ? true : false" /></th>
+                    </tr>
+                </thead>
+                <tr class="adminAddValueRow">
+                    <td></td>
+                    <td>
+                        <input type="text" />
+                    </td>
+                    <td>
+                        <div class="addRow" onclick="AdminPanel.AddRecord()"></div>
+                    </td>
+                </tr>
+                <tbody data-bind="foreach: sites.referenceDataPage()">
+                    <tr data-bind="style: { color: $data.Enabled() ? 'black': '#AAA' }">
+                        <td>
+                            <span data-bind="text: $data.ID()"></span>
+                        </td>
+                        <td class="ReferenceParentCell" data-bind="click: function(data, event) { AdminPanel.PopulateChildReferenceData(data, event, 'jobs') }">
+                            <span data-bind="text: $data.Value()"></span>
+                        </td>
+                        <td>
+                            <div class="ui-icon-close deleteRow" data-bind="event:{ click: AdminPanel.DeleteRecord.bind($data) }, visible: $data.Enabled() ? true : false"></div>
+                        </td>
+                    </tr>
+                </tbody>
+                <tr data-bind="visible: sites.totalPossiblePages() > 0 ? true : false">
+                    <td colspan="3" class="pageControlContainer">
+                        <div class="pageControl">
+                            <img data-bind="attr: { src: sites.pageNumber() > 0 ? '/Content/images/left-16-black.png' : '/Content/images/left-16-gray.png' }" onclick="PageData.PreviousPage()" />
+                            <label data-bind="text: 'Page ' + (sites.pageNumber() + 1) + ' of ' + (sites.totalPossiblePages() + 1)"></label>
+                            <img data-bind="attr: { src: sites.pageNumber() < sites.totalPossiblePages() ? '/Content/images/right-16-black.png' : '/Content/images/right-16-gray.png' }" onclick="PageData.NextPage()" />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td class="refDataSection">
+            <h4>Devices</h4>
+            <table id="devices" class="adminReferenceDataTable">
+                <thead>
+                    <tr>
+                        <th id="hID" style="width:20%;" onclick="PageData.Sort()">ID</th>
+                        <th id="hValue" onclick="PageData.Sort()">Value</th>
+                        <th><input type="checkbox" title="" onchange="AdminPanel.ShowDisabledRefData('devices')" data-bind="checked: devices.viewDisabledData() ? true : false" /></th>
+                    </tr>
+                </thead>
+                <tr class="adminAddValueRow">
+                    <td></td>
+                    <td>
+                        <input type="text" />
+                    </td>
+                    <td>
+                        <div class="addRow" onclick="AdminPanel.AddRecord()"></div>
+                    </td>
+                </tr>
+                <tbody data-bind="foreach: devices.referenceDataPage()">
+                    <tr data-bind="style: { color: $data.Enabled() ? 'black': '#AAA' }">
+                        <td>
+                            <span data-bind="text: $data.ID()"></span>
+                        </td>
+                        <td>
+                            <span data-bind="text: $data.Value()"></span>
+                        </td>
+                        <td>
+                            <div class="ui-icon-close deleteRow" data-bind="event:{ click: AdminPanel.DeleteRecord.bind($data) }, visible: $data.Enabled() ? true : false"></div>
+                        </td>
+                    </tr>
+                </tbody>
+                <tr data-bind="visible: devices.totalPossiblePages() > 0 ? true : false">
+                    <td colspan="3" class="pageControlContainer">
+                        <div class="pageControl" data-bind="visible: devices.totalPossiblePages() > 0 ? true : false">
+                            <img data-bind="attr: { src: devices.pageNumber() > 0 ? '/Content/images/left-16-black.png' : '/Content/images/left-16-gray.png' }" onclick="PageData.PreviousPage()" />
+                            <label data-bind="text: 'Page ' + (devices.pageNumber() + 1) + ' of ' + (devices.totalPossiblePages() + 1)"></label>
+                            <img data-bind="attr: { src: devices.pageNumber() < devices.totalPossiblePages() ? '/Content/images/right-16-black.png' : '/Content/images/right-16-gray.png' }" onclick="PageData.NextPage()" />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td class="refDataSection">
+            <h4>Jobs</h4>
+            <table id="jobs" class="adminReferenceDataTable">
+                <thead>
+                    <tr>
+                        <th id="hID" style="width:20%;" onclick="PageData.Sort()">ID</th>
+                        <th id="hValue" onclick="PageData.Sort()">Value</th>
+                        <th><input type="checkbox" title="" onchange="AdminPanel.ShowDisabledRefData('jobs')" data-bind="checked: jobs.viewDisabledData() ? true : false" /></th>
+                    </tr>
+                </thead>
+                <tr class="adminAddValueRow">
+                    <td></td>
+                    <td>
+                        <input class="hdnParentID" type="hidden" value="" />
+                        <span class="lblSubTitle">Select a Site to populate Jobs</span>
+                    </td>
+                    <td>
+                        <div class="addRow" style="display:none;" onclick="DialogBox.AddReferenceJobDialog()"></div>
+                    </td>
+                </tr>
+                <tbody data-bind="foreach: jobs.referenceDataPage()">
+                    <tr data-bind="style: { color: $data.Enabled() ? 'black': '#AAA' }">
+                        <td>
+                            <span data-bind="text: $data.ID()"></span>
+                        </td>
+                        <td>
+                            <span data-bind="text: $data.Value()"></span>
+                        </td>
+                        <td>
+                            <div class="ui-icon-close deleteRow" data-bind="event:{ click: AdminPanel.DeleteRecord.bind($data) }, visible: $data.Enabled() ? true : false"></div>
+                        </td>
+                    </tr>
+                </tbody>
+                <tr data-bind="visible: jobs.totalPossiblePages() > 0 ? true : false">
+                    <td colspan="3" class="pageControlContainer">
+                        <div class="pageControl">
+                            <img data-bind="attr: { src: jobs.pageNumber() > 0 ? '/Content/images/left-16-black.png' : '/Content/images/left-16-gray.png' }" onclick="PageData.PreviousPage()" />
+                            <label data-bind="text: 'Page ' + (jobs.pageNumber() + 1) + ' of ' + (jobs.totalPossiblePages() + 1)"></label>
+                            <img data-bind="attr: { src: jobs.pageNumber() < sites.totalPossiblePages() ? '/Content/images/right-16-black.png' : '/Content/images/right-16-gray.png' }" onclick="PageData.NextPage()" />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td class="refDataSection">
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3723ed08b3c4472e8387ffaf2cb9cce7" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="WorkOrdersAppModel.ManageDevice" Width="1.5" PointX="1.875" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkOrdersAppModel.refDevice" Width="1.5" PointX="1.875" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkOrdersAppModel.refJob" Width="1.5" PointX="8.125" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkOrdersAppModel.refUser" Width="1.5" PointX="4" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkOrdersAppModel.WorkOrder" Width="1.5" PointX="6" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="WorkOrdersAppModel.FK_ManageDevices_refDevices" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkOrdersAppModel.FK_ManageDevices_refUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkOrdersAppModel.FK_WorkOrders_refUsers" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="WorkOrdersAppModel.refSite" Width="1.5" PointX="8.125" PointY="5.625" />
+        <AssociationConnector Association="WorkOrdersAppModel.FK_refJobs_refSites" />
+        <AssociationConnector Association="WorkOrdersAppModel.FK_WorkOrders_refJobs" />
+        <AssociationConnector Association="WorkOrdersAppModel.FK_WorkOrders_refUsers1" />
+        <AssociationConnector Association="WorkOrdersAppModel.FK_ManageDevices_refUsers1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

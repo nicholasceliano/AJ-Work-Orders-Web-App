@@ -1,0 +1,499 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WorkOrdersAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ManageDevices">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="DeviceID" Type="int" Nullable="false" />
+          <Property Name="DeviceGUID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastUpdateBy" Type="int" />
+          <Property Name="LastUpdateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="refDevices">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeviceName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="refJobs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SiteID" Type="int" Nullable="false" />
+          <Property Name="JobNumber" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="JobName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="refSites">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SitesName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="refUsers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="First Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Last Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="Admin" Type="bit" />
+          <Property Name="WebUser" Type="bit" />
+          <Property Name="DeviceUser" Type="bit" />
+        </EntityType>
+        <EntityType Name="WorkOrders">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobID" Type="int" Nullable="false" />
+          <Property Name="SubmitUserID" Type="int" Nullable="false" />
+          <Property Name="SubmittedDate" Type="datetime" Nullable="false" />
+          <Property Name="Subject" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" Nullable="false" />
+          <Property Name="Reviewed" Type="bit" />
+          <Property Name="LastUpdateBy" Type="int" />
+          <Property Name="LastUpdateDate" Type="datetime" />
+          <Property Name="RegHoursWorked" Type="decimal" Precision="3" Scale="1" />
+          <Property Name="OvertimeHoursWorked" Type="decimal" Precision="3" Scale="1" />
+        </EntityType>
+        <Association Name="FK_ManageDevices_refDevices">
+          <End Role="refDevices" Type="Self.refDevices" Multiplicity="1" />
+          <End Role="ManageDevices" Type="Self.ManageDevices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refDevices">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ManageDevices">
+              <PropertyRef Name="DeviceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManageDevices_refUsers">
+          <End Role="refUsers" Type="Self.refUsers" Multiplicity="1" />
+          <End Role="ManageDevices" Type="Self.ManageDevices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refUsers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ManageDevices">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManageDevices_refUsers1">
+          <End Role="refUsers" Type="Self.refUsers" Multiplicity="0..1" />
+          <End Role="ManageDevices" Type="Self.ManageDevices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refUsers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ManageDevices">
+              <PropertyRef Name="LastUpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_refJobs_refSites">
+          <End Role="refSites" Type="Self.refSites" Multiplicity="1" />
+          <End Role="refJobs" Type="Self.refJobs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refSites">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="refJobs">
+              <PropertyRef Name="SiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOrders_refJobs">
+          <End Role="refJobs" Type="Self.refJobs" Multiplicity="1" />
+          <End Role="WorkOrders" Type="Self.WorkOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refJobs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkOrders">
+              <PropertyRef Name="JobID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOrders_refUsers">
+          <End Role="refUsers" Type="Self.refUsers" Multiplicity="1" />
+          <End Role="WorkOrders" Type="Self.WorkOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refUsers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkOrders">
+              <PropertyRef Name="SubmitUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOrders_refUsers1">
+          <End Role="refUsers" Type="Self.refUsers" Multiplicity="0..1" />
+          <End Role="WorkOrders" Type="Self.WorkOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refUsers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkOrders">
+              <PropertyRef Name="LastUpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WorkOrdersAppModelStoreContainer">
+          <EntitySet Name="ManageDevices" EntityType="Self.ManageDevices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="refDevices" EntityType="Self.refDevices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="refJobs" EntityType="Self.refJobs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="refSites" EntityType="Self.refSites" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="refUsers" EntityType="Self.refUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkOrders" EntityType="Self.WorkOrders" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ManageDevices_refDevices" Association="Self.FK_ManageDevices_refDevices">
+            <End Role="refDevices" EntitySet="refDevices" />
+            <End Role="ManageDevices" EntitySet="ManageDevices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManageDevices_refUsers" Association="Self.FK_ManageDevices_refUsers">
+            <End Role="refUsers" EntitySet="refUsers" />
+            <End Role="ManageDevices" EntitySet="ManageDevices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManageDevices_refUsers1" Association="Self.FK_ManageDevices_refUsers1">
+            <End Role="refUsers" EntitySet="refUsers" />
+            <End Role="ManageDevices" EntitySet="ManageDevices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_refJobs_refSites" Association="Self.FK_refJobs_refSites">
+            <End Role="refSites" EntitySet="refSites" />
+            <End Role="refJobs" EntitySet="refJobs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOrders_refJobs" Association="Self.FK_WorkOrders_refJobs">
+            <End Role="refJobs" EntitySet="refJobs" />
+            <End Role="WorkOrders" EntitySet="WorkOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOrders_refUsers" Association="Self.FK_WorkOrders_refUsers">
+            <End Role="refUsers" EntitySet="refUsers" />
+            <End Role="WorkOrders" EntitySet="WorkOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOrders_refUsers1" Association="Self.FK_WorkOrders_refUsers1">
+            <End Role="refUsers" EntitySet="refUsers" />
+            <End Role="WorkOrders" EntitySet="WorkOrders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WorkOrdersAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ManageDevice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="DeviceID" Type="Int32" Nullable="false" />
+          <Property Name="DeviceGUID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastUpdateBy" Type="Int32" Nullable="true" />
+          <Property Name="LastUpdateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="refDevice" Relationship="Self.FK_ManageDevices_refDevices" FromRole="ManageDevices" ToRole="refDevices" />
+          <NavigationProperty Name="refUser" Relationship="Self.FK_ManageDevices_refUsers" FromRole="ManageDevices" ToRole="refUsers" />
+          <NavigationProperty Name="refUser1" Relationship="WorkOrdersAppModel.FK_ManageDevices_refUsers1" FromRole="ManageDevice" ToRole="refUser" />
+        </EntityType>
+        <EntityType Name="refDevice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeviceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ManageDevices" Relationship="Self.FK_ManageDevices_refDevices" FromRole="refDevices" ToRole="ManageDevices" />
+        </EntityType>
+        <EntityType Name="refJob">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="SiteID" Type="Int32" Nullable="false" />
+          <Property Name="JobNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="refSite" Relationship="WorkOrdersAppModel.FK_refJobs_refSites" FromRole="refJob" ToRole="refSite" />
+          <NavigationProperty Name="WorkOrders" Relationship="WorkOrdersAppModel.FK_WorkOrders_refJobs" FromRole="refJob" ToRole="WorkOrder" />
+        </EntityType>
+        <EntityType Name="refUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ManageDevices" Relationship="Self.FK_ManageDevices_refUsers" FromRole="refUsers" ToRole="ManageDevices" />
+          <NavigationProperty Name="WorkOrders" Relationship="Self.FK_WorkOrders_refUsers" FromRole="refUsers" ToRole="WorkOrders" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Admin" Type="Boolean" />
+          <Property Name="WebUser" Type="Boolean" />
+          <Property Name="DeviceUser" Type="Boolean" />
+          <NavigationProperty Name="WorkOrders1" Relationship="WorkOrdersAppModel.FK_WorkOrders_refUsers1" FromRole="refUser" ToRole="WorkOrder" />
+          <NavigationProperty Name="ManageDevices1" Relationship="WorkOrdersAppModel.FK_ManageDevices_refUsers1" FromRole="refUser" ToRole="ManageDevice" />
+        </EntityType>
+        <EntityType Name="WorkOrder">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobID" Type="Int32" Nullable="false" />
+          <Property Name="SubmitUserID" Type="Int32" Nullable="false" />
+          <Property Name="SubmittedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Subject" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Reviewed" Type="Boolean" />
+          <Property Name="LastUpdateBy" Type="Int32" Nullable="true" />
+          <Property Name="LastUpdateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="refUser" Relationship="Self.FK_WorkOrders_refUsers" FromRole="WorkOrders" ToRole="refUsers" />
+          <NavigationProperty Name="refJob" Relationship="WorkOrdersAppModel.FK_WorkOrders_refJobs" FromRole="WorkOrder" ToRole="refJob" />
+          <Property Name="RegHoursWorked" Type="Decimal" Precision="3" Scale="1" />
+          <Property Name="OvertimeHoursWorked" Type="Decimal" Precision="3" Scale="1" />
+          <NavigationProperty Name="refUser1" Relationship="WorkOrdersAppModel.FK_WorkOrders_refUsers1" FromRole="WorkOrder" ToRole="refUser" />
+        </EntityType>
+        <Association Name="FK_ManageDevices_refDevices">
+          <End Role="refDevices" Type="Self.refDevice" Multiplicity="1" />
+          <End Role="ManageDevices" Type="Self.ManageDevice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refDevices">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ManageDevices">
+              <PropertyRef Name="DeviceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManageDevices_refUsers">
+          <End Role="refUsers" Type="Self.refUser" Multiplicity="1" />
+          <End Role="ManageDevices" Type="Self.ManageDevice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refUsers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ManageDevices">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOrders_refUsers">
+          <End Role="refUsers" Type="Self.refUser" Multiplicity="1" />
+          <End Role="WorkOrders" Type="Self.WorkOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refUsers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkOrders">
+              <PropertyRef Name="SubmitUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WorkOrdersAppEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ManageDevices" EntityType="Self.ManageDevice" />
+          <EntitySet Name="refDevices" EntityType="Self.refDevice" />
+          <EntitySet Name="refJobs" EntityType="Self.refJob" />
+          <EntitySet Name="refUsers" EntityType="Self.refUser" />
+          <EntitySet Name="WorkOrders" EntityType="Self.WorkOrder" />
+          <AssociationSet Name="FK_ManageDevices_refDevices" Association="Self.FK_ManageDevices_refDevices">
+            <End Role="refDevices" EntitySet="refDevices" />
+            <End Role="ManageDevices" EntitySet="ManageDevices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManageDevices_refUsers" Association="Self.FK_ManageDevices_refUsers">
+            <End Role="refUsers" EntitySet="refUsers" />
+            <End Role="ManageDevices" EntitySet="ManageDevices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOrders_refUsers" Association="Self.FK_WorkOrders_refUsers">
+            <End Role="refUsers" EntitySet="refUsers" />
+            <End Role="WorkOrders" EntitySet="WorkOrders" />
+          </AssociationSet>
+          <EntitySet Name="refSites" EntityType="WorkOrdersAppModel.refSite" />
+          <AssociationSet Name="FK_refJobs_refSites" Association="WorkOrdersAppModel.FK_refJobs_refSites">
+            <End Role="refSite" EntitySet="refSites" />
+            <End Role="refJob" EntitySet="refJobs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOrders_refJobs" Association="WorkOrdersAppModel.FK_WorkOrders_refJobs">
+            <End Role="refJob" EntitySet="refJobs" />
+            <End Role="WorkOrder" EntitySet="WorkOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOrders_refUsers1" Association="WorkOrdersAppModel.FK_WorkOrders_refUsers1">
+            <End Role="refUser" EntitySet="refUsers" />
+            <End Role="WorkOrder" EntitySet="WorkOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManageDevices_refUsers1" Association="WorkOrdersAppModel.FK_ManageDevices_refUsers1">
+            <End Role="refUser" EntitySet="refUsers" />
+            <End Role="ManageDevice" EntitySet="ManageDevices" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="refSite">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SitesName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="refJobs" Relationship="WorkOrdersAppModel.FK_refJobs_refSites" FromRole="refSite" ToRole="refJob" />
+        </EntityType>
+        <Association Name="FK_refJobs_refSites">
+          <End Type="WorkOrdersAppModel.refSite" Role="refSite" Multiplicity="1" />
+          <End Type="WorkOrdersAppModel.refJob" Role="refJob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refSite">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="refJob">
+              <PropertyRef Name="SiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOrders_refJobs">
+          <End Type="WorkOrdersAppModel.refJob" Role="refJob" Multiplicity="1" />
+          <End Type="WorkOrdersAppModel.WorkOrder" Role="WorkOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refJob">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkOrder">
+              <PropertyRef Name="JobID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOrders_refUsers1">
+          <End Type="WorkOrdersAppModel.refUser" Role="refUser" Multiplicity="0..1" />
+          <End Type="WorkOrdersAppModel.WorkOrder" Role="WorkOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkOrder">
+              <PropertyRef Name="LastUpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManageDevices_refUsers1">
+          <End Type="WorkOrdersAppModel.refUser" Role="refUser" Multiplicity="0..1" />
+          <End Type="WorkOrdersAppModel.ManageDevice" Role="ManageDevice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ManageDevice">
+              <PropertyRef Name="LastUpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WorkOrdersAppModelStoreContainer" CdmEntityContainer="WorkOrdersAppEntities">
+          <EntitySetMapping Name="ManageDevices">
+            <EntityTypeMapping TypeName="WorkOrdersAppModel.ManageDevice">
+              <MappingFragment StoreEntitySet="ManageDevices">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+                <ScalarProperty Name="DeviceGUID" ColumnName="DeviceGUID" />
+                <ScalarProperty Name="LastUpdateBy" ColumnName="LastUpdateBy" />
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="refDevices">
+            <EntityTypeMapping TypeName="WorkOrdersAppModel.refDevice">
+              <MappingFragment StoreEntitySet="refDevices">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="refJobs">
+            <EntityTypeMapping TypeName="WorkOrdersAppModel.refJob">
+              <MappingFragment StoreEntitySet="refJobs">
+                <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+                <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="JobName" ColumnName="JobName" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="refUsers">
+            <EntityTypeMapping TypeName="WorkOrdersAppModel.refUser">
+              <MappingFragment StoreEntitySet="refUsers">
+                <ScalarProperty Name="DeviceUser" ColumnName="DeviceUser" />
+                <ScalarProperty Name="WebUser" ColumnName="WebUser" />
+                <ScalarProperty Name="Admin" ColumnName="Admin" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="First_Name" ColumnName="First Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last Name" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkOrders">
+            <EntityTypeMapping TypeName="WorkOrdersAppModel.WorkOrder">
+              <MappingFragment StoreEntitySet="WorkOrders">
+                <ScalarProperty Name="OvertimeHoursWorked" ColumnName="OvertimeHoursWorked" />
+                <ScalarProperty Name="RegHoursWorked" ColumnName="RegHoursWorked" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="SubmitUserID" ColumnName="SubmitUserID" />
+                <ScalarProperty Name="SubmittedDate" ColumnName="SubmittedDate" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Reviewed" ColumnName="Reviewed" />
+                <ScalarProperty Name="LastUpdateBy" ColumnName="LastUpdateBy" />
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="refSites">
+            <EntityTypeMapping TypeName="WorkOrdersAppModel.refSite">
+              <MappingFragment StoreEntitySet="refSites">
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="SitesName" ColumnName="SitesName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

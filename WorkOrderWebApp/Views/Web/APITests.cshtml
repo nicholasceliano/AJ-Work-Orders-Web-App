@@ -1,0 +1,161 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title - AJ Celiano</title>
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="~/Scripts/APITestsCalls.js"></script>
+</head>
+<body>
+    <div class="container body-content">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">Web API Tests</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="2">Devices Calls</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" value="Get" onclick="API.Devices.Get();" />
+                    </td>
+                    <td>
+                        <label id="lblDevicesGet"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" value="Post" onclick="API.Devices.Post();" />
+                        <input id="txtDevicesPost" type="text" />
+                    </td>
+                    <td>
+                        <label id="lblDevicesPost"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" value="Delete" onclick="API.Devices.Delete();" />
+                        <input id="txtDevicesDelete" type="text" />
+                    </td>
+                    <td>
+                        <label id="lblDevicesDelete"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">Jobs Calls</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" value="Get" onclick="API.Jobs.Get();" />
+                    </td>
+                    <td>
+                        <label id="lblJobsGet"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" value="Post" onclick="API.Jobs.Post();" />
+                        <input id="txtJobsPost" type="text" />
+                    </td>
+                    <td>
+                        <label id="lblJobsPost"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" value="Delete" onclick="API.Jobs.Delete();" />
+                        <input id="txtJobsDelete" type="text" />
+                    </td>
+                    <td>
+                        <label id="lblJobsDelete"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">Manage Devices Calls</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" value="Get" onclick="API.ManageDevices.Get();" />
+                    </td>
+                    <td>
+                        <label id="lblManageDevicesGet"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" value="Post" onclick="API.ManageDevices.Post();" />
+                        <input id="txtManageDevicesPost" type="text" />
+                    </td>
+                    <td>
+                        <label id="lblManageDevicesPost"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" value="Delete" onclick="API.ManageDevices.Delete();" />
+                        <input id="txtManageDevicesDelete" type="text" />
+                    </td>
+                    <td>
+                        <label id="lblManageDevicesDelete"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">Users Calls</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" value="Get" onclick="API.Users.Get();" />
+                    </td>
+                    <td>
+                        <label id="lblUsersGet"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" value="Post" onclick="API.Users.Post();" />
+                        <input id="txtUsersPost" type="text" />
+                    </td>
+                    <td>
+                        <label id="lblUsersPost"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" value="Delete" onclick="API.Users.Delete();" />
+                        <input id="txtUsersDelete" type="text" />
+                    </td>
+                    <td>
+                        <label id="lblUsersDelete"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">Work Orders Calls</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" value="Get" onclick="API.WorkOrders.Get();" />
+                    </td>
+                    <td>
+                        <label id="lblWorkOrdersGet"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" value="Post" onclick="API.WorkOrders.Post();" />
+                        <input id="txtUsersPost" type="text" />
+                    </td>
+                    <td>
+                        <label id="lblWorkOrdersPost"></label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

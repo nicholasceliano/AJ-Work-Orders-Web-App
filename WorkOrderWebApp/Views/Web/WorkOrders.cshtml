@@ -1,0 +1,82 @@
+﻿<div id="workOrderDialog" style="display:none;"></div>
+<div id="workOrderSearch">
+    <h3 onclick="SearchPanel.Toggle();"><t></t></h3>
+    <div></div>
+</div>
+
+<table id="pageTable">
+    <thead>
+        <tr>
+            <th id="hID" style="width:4%;" onclick="PageData.Sort()">ID</th>
+            <th id="hSite" style="width:10%;" onclick="PageData.Sort()">Site</th>
+            <th id="hJob" style="width:10%;" onclick="PageData.Sort()">Job</th>
+            <th id="hSubBy" style="width:10%;" onclick="PageData.Sort()">Assigned To</th>
+            <th id="hSubDt" style="width:11%;" onclick="PageData.Sort()">Assigned Date</th>
+            <th id="hRegHrs" style="width:5%;" onclick="PageData.Sort()">Reg Hrs</th>
+            <th id="hOvertimeHrs" style="width:5%;" onclick="PageData.Sort()">OT Hrs</th>
+            <th id="hSubject" style="width:16%;" onclick="PageData.Sort()">Subejct </th>
+            <th id="hDescription" style="width:20%;" onclick="PageData.Sort()">Description</th>
+            <th id="hStatus" style="width:8%;" onclick="PageData.Sort()">Review Status</th>
+            <th id="hLastUpBy" style="width:10%;" onclick="PageData.Sort()">Last Update By</th>
+            <th id="hLastUpDt" style="width:11%;" onclick="PageData.Sort()">Last Updated Date</th>
+        </tr>
+    </thead>
+    <tr data-bind="visible: wo.workOrdersView().length == 0">
+        <td colspan="12">
+            No Results
+        </td>
+    </tr>
+    <tbody data-bind="foreach: wo.workOrdersPage()">
+        <tr data-bind="click: DialogBox.ShowWorkOrder.bind($data)">
+            <td>
+                <span data-bind="text: $data.ID()"></span>
+            </td>
+            <td>
+                <span data-bind="text: $data.Site()"></span>
+            </td>
+            <td>
+                <span data-bind="text: $data.Job()"></span>
+            </td>
+            <td>
+                <span data-bind="text: $data.SubmittedBy"></span>
+            </td>
+            <td>
+                <span data-bind="text: $data.SubmittedDate()"></span>
+            </td>
+            <td>
+                <span data-bind="text: $data.RegHoursWorkedFrmtd()"></span>
+            </td>
+            <td>
+                <span data-bind="text: $data.OvertimeHoursWorkedFrmtd()"></span>
+            </td>
+            <td>
+                <span data-bind="text: $data.Subject()"></span>
+            </td>
+            <td>
+                <span data-bind="text: $data.Description()"></span>
+            </td>
+            <td>
+                <span data-bind="text: WorkOrderModeling.ReviewedGridText($data.Reviewed())"></span>
+            </td>
+            <td>
+                <span data-bind="text: $data.LastUpdatedBy()"></span>
+            </td>
+            <td>
+                <span data-bind="text: $data.LastUpdatedDate()"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="pageControl">
+    <div id="leftHalf">
+        <div id="addNewWrap">
+            <div id="addNewBtnImg" class="addRow" onclick="DialogBox.AddNewWorkOrder();"></div>
+            <span id="addNewBtnTxt" onclick="DialogBox.AddNewWorkOrder();">Add New</span>
+        </div>
+    </div>
+    <div id="rightHalf" data-bind="visible: wo.totalPossiblePages() > 0 ? true : false">
+        <img data-bind="attr: { src: wo.pageNumber() > 0 ? '/Content/images/left-16-black.png' : '/Content/images/left-16-gray.png' }" onclick="PageData.PreviousPage()" />
+        <label data-bind="text: 'Page ' + (wo.pageNumber() + 1) + ' of ' + (wo.totalPossiblePages() + 1)"></label>
+        <img data-bind="attr: { src: wo.pageNumber() < wo.totalPossiblePages() ? '/Content/images/right-16-black.png' : '/Content/images/right-16-gray.png' }" onclick="PageData.NextPage()" />
+    </div>
+</div>

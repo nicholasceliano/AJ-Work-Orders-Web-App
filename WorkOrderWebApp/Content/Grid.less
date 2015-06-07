@@ -1,0 +1,446 @@
+﻿@linkBlue:#0000FF;
+@darkBlue:#0072b3;
+@lightBlue:#d6e9f4;
+@lightGrey:#c9d0d4;
+@darkGrey:#AAA;
+@pageMinWidth:1050px;
+@Error: darkred;
+
+input[type=checkbox]{
+    cursor:pointer;
+}
+
+#loginPanel{
+    padding-top:20px;
+    padding-bottom:20px;
+    margin:auto;
+    width:250px;
+    h2{
+        margin:0;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        padding-left:1px;
+        font-weight:normal;
+    }
+    table{
+        margin:auto;
+        background-color:@lightBlue;
+        border: 1px solid @darkBlue;
+        padding:15px;
+        .loginInput{
+            width:150px;
+        }
+        #lblError{
+            width:100%;
+            text-align:center;
+            float:right;
+            color:@Error;
+        }
+    }
+}
+
+#navbar {
+    width: 100%;
+    min-width:@pageMinWidth;
+    background: linear-gradient(to bottom right, @lightBlue, white);
+    height: 60px;
+    border-bottom:3px double @darkBlue;
+
+    ul {
+        margin: auto;
+        padding: 0;
+        list-style: none;
+        height: 100%;
+        width:65%;
+        float:left;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        li {
+            display: inline;
+            float: left;
+            height: 100%;
+            padding-right: 15px;
+            margin-top: 23px;
+            img {
+                margin-top: -28px;
+                height: 50px;
+                padding: 10px;
+            }
+            h1{
+                margin:0;
+                font-size:13pt;
+                font-weight:normal;
+            }
+            a {
+                padding-top: 20px;
+                text-decoration: none;
+                color: black;
+                font-size: 13pt;
+                
+
+                &:hover {
+                    color: @darkBlue;
+                }
+            }
+        }
+    }
+    span{
+        text-align:center;
+        padding:15px;
+        a:visited{
+            color:@linkBlue;
+        }
+    }
+}
+
+body{
+    margin:0 auto;
+    font-size: 9pt;
+    #pageTitle{
+        width: 98%;
+        margin:auto;
+        min-width: @pageMinWidth;
+        text-align:center;
+        table-layout: fixed;
+        border-collapse: separate;
+        border-spacing: 0;
+        padding-bottom:10px;
+        h2{
+            margin:auto;
+        }
+    }
+    .body-content {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+.ui-state-active { background: @darkBlue; }
+#workOrderSearch {
+    width: 98%;
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    min-width: @pageMinWidth;
+
+    h3 {
+        color:white;
+        background-color:@darkBlue !important;
+        font-weight:bold;
+        font-size:9pt;
+        height:12px;
+        &:focus{
+            outline:0;
+        }
+    }
+    
+    div {
+        height:44px;
+        padding:0;
+    }
+}
+
+#searchPanel{
+    width:100%;
+    border-spacing:0;
+    td{
+        text-align:center;
+        #selJob{
+            width:150px;
+        }
+        #selSubBy{
+            width:150px;
+        }
+        span {
+            font-weight:bold;
+        }
+        #txtDateFrom, #txtDateTo {
+            width:75px;
+        }
+        div{
+            float:left;
+            display:table;
+            height:42px; /*2 less than parent div height*/
+            span{
+                display:table-cell;
+                vertical-align:middle;
+            }
+        }
+        table{
+            border-spacing: 0;
+            td{
+                padding:0;
+                text-align:right;
+                font-size:9pt;
+            }
+        }
+        #search{
+            cursor:pointer;
+        }
+        #clear{
+            cursor:pointer;
+            outline:0;
+            background:none;
+            border:none;
+            color:@linkBlue;
+            font-size:7pt;
+        }
+    }
+    
+}
+
+#pageTable {
+    width: 98%;
+    margin: auto;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: @pageMinWidth;
+    border: 1px solid @darkGrey;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+
+    th {
+        background-color: @darkBlue;
+        color: whitesmoke;
+        border-right: 1px solid @darkGrey;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+        font-size: 9pt;
+
+        &:last-child {
+            border-right: none;
+        }
+
+        .sort {
+            height: 8px;
+            width: 8px;
+            padding-left: 5px;
+        }
+    }
+
+    tr {
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+        background-color: whitesmoke;
+        font-size: 9pt;
+
+        &:nth-child(odd) {
+            background-color: @lightBlue;
+        }
+
+        &:hover {
+            background-color: lightGrey;
+            cursor: pointer;
+        }
+
+        td {
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+            border-right: 1px solid @darkGrey;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            &:last-child {
+                border-right: none;
+            }
+
+            span {
+                -moz-user-select:text;
+                -ms-user-select:text;
+                -webkit-user-select:text;
+                user-select:text;
+                cursor:text;
+            }
+        }
+    }
+}
+
+.refDataSection{
+    vertical-align:top;
+    h4{
+        margin:auto;
+        text-decoration:underline;
+        text-align:left;
+        width:70%;
+        padding-left:5px;
+        padding-bottom:3px;
+        font-size:1.2em;
+
+    }
+
+    .adminUsersTable,.adminReferenceDataTable{
+        width: 70%;
+        margin:auto;
+        table-layout: fixed;
+        border-collapse: separate;
+        border-spacing: 0;
+        border: 1px solid @darkGrey;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+        margin-bottom: 5px;
+
+        th {
+            background-color: @darkBlue;
+            color: whitesmoke;
+            border-right: 1px solid @darkGrey;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+            cursor:pointer;
+            &:last-child {
+                border-right: none;
+                width:20px;
+                cursor:default;
+            }
+            .sort {
+                height: 8px;
+                width: 8px;
+                padding-left: 5px;
+            }
+        }
+        .adminAddValueRow{
+            td{
+                background-color:white;
+                border-bottom:1px solid @darkGrey;
+            }
+        }
+        tr {
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+            background-color: whitesmoke;
+            &:nth-child(odd) {
+                background-color: @lightBlue;
+            }
+            &:hover {
+                background-color: lightGrey;
+            }
+            .ReferenceParentCell{
+                cursor:pointer;
+                span{
+                    cursor:pointer;
+                }
+            }
+            td {
+                -moz-user-select: none;
+                -ms-user-select: none;
+                -webkit-user-select: none;
+                user-select: none;
+                border-right: 1px solid @darkGrey;
+                text-align: center;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                &:last-child {
+                    border-right: none;
+                }
+                input {
+                    width:98%;
+                }
+                span {
+                    -moz-user-select:text;
+                    -ms-user-select:text;
+                    -webkit-user-select:text;
+                    user-select:text;
+                    cursor:text;
+                }
+                .deleteRow{
+                    cursor:pointer;
+                    background-image: url('/Content/images/ui-icons_cd0a0a_256x240.png');
+                    width:16px;
+                    height:16px;
+                    border:none;
+                    background-color:transparent;
+                    margin:auto;
+                }
+            }
+        }
+    }
+}
+
+.adminUsersTable{
+    tr{
+        cursor:pointer;
+    }
+}
+
+.addRow {
+    cursor:pointer;
+    background: url('/Content/images/plus-16-green.png') no-repeat center;
+    background-size: 11px 11px;
+    margin:auto;
+    width:16px;
+    height:22px;
+}
+
+
+.fieldLabel{
+    white-space:nowrap;
+    font-weight:bold;
+    text-align:right;
+    vertical-align:top;
+}
+
+
+#dialogBtnDelete{
+    background:none;
+    border:none;
+    font-size:1em;
+    color:@darkGrey;
+    float:left;
+    outline: none;
+}
+
+.pageControlContainer{
+    background-color:white;
+    border-top:1px solid @darkGrey;
+}
+
+.pageControl{
+    width:98%;
+    text-align:right;
+    margin:auto;
+    img{
+        cursor:pointer;
+        height:12px;
+        width:12px;
+    }
+    #leftHalf{
+        width:50%;
+        float:left;
+        margin-top:-5px;
+        #addNewWrap{
+            height:20px;
+            #addNewBtnImg{
+                float:left;
+                cursor:pointer;
+            }
+            #addNewBtnTxt{
+                margin-top:5px;
+                margin-left:3px;
+                float:left;
+                cursor:pointer;
+            }
+        }
+    }
+    #rightHalf{
+        width:50%;
+        float:right;
+    }
+}
+
+.ErrorText{
+    color:@Error;
+}

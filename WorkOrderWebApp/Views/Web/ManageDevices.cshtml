@@ -1,0 +1,56 @@
+﻿<div id="manageDevicesDialog" style="display:none;"></div>
+
+<table id="pageTitle">
+    <tr>
+        <td><h2>@ViewBag.Title</h2></td>
+    </tr>
+</table>
+
+<table id="pageTable">
+    <thead>
+        <tr>
+            <th id="hUserName" style="width:16%;" onclick="PageData.Sort()">User</th>
+            <th id="hDeviceName" style="width:22%;" onclick="PageData.Sort()">Device Name</th>
+            <th id="hGUID" style="width:30%;" onclick="PageData.Sort()">Device GUID</th>
+            <th id="hLastUpBy" style="width:16%;" onclick="PageData.Sort()">Last Update By</th>
+            <th id="hLastUpDt" style="width:16%;" onclick="PageData.Sort()">Last Update Date</th>
+        </tr>
+    </thead>
+    <tr data-bind="visible: md.allDevices().length == 0">
+        <td colspan="9">
+            No Results
+        </td>
+    </tr>
+    <tbody data-bind="foreach: md.manangeDevicesPage()">
+        <tr data-bind="event:{ click: DialogBox.ShowManageDevice.bind($data) }">
+            <td>
+                <span data-bind="text: $data.UserName()"></span>
+            </td>
+            <td>
+                <span data-bind="text: $data.DeviceName()"></span>
+            </td>
+            <td>
+                <span data-bind="text: $data.GUID()"></span>
+            </td>
+            <td>
+                <span data-bind="text: $data.LastUpdatedBy()"></span>
+            </td>
+            <td>
+                <span data-bind="text: $data.LastUpdatedDate()"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="pageControl">
+    <div id="leftHalf">
+        <div id="addNewWrap">
+            <div id="addNewBtnImg" class="addRow" onclick="DialogBox.AddNewManageDevice();"></div>
+            <span id="addNewBtnTxt" onclick="DialogBox.AddNewManageDevice();">Add New</span>
+        </div>
+    </div>
+    <div id="rightHalf" data-bind="visible: md.totalPossiblePages() > 0 ? true : false">
+        <img data-bind="attr: { src: md.pageNumber() > 0 ? '/Content/images/left-16-black.png' : '/Content/images/left-16-gray.png' }" onclick="PageData.PreviousPage()" />
+        <label data-bind="text: 'Page ' + (md.pageNumber() + 1) + ' of ' + (md.totalPossiblePages() + 1)"></label>
+        <img data-bind="attr: { src: md.pageNumber() < md.totalPossiblePages() ? '/Content/images/right-16-black.png' : '/Content/images/right-16-gray.png' }" onclick="PageData.NextPage()" />
+    </div>
+</div>

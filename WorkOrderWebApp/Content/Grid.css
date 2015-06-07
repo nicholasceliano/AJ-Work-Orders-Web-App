@@ -1,0 +1,420 @@
+﻿input[type=checkbox] {
+  cursor: pointer;
+}
+#loginPanel {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin: auto;
+  width: 250px;
+}
+#loginPanel h2 {
+  margin: 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  padding-left: 1px;
+  font-weight: normal;
+}
+#loginPanel table {
+  margin: auto;
+  background-color: #d6e9f4;
+  border: 1px solid #0072b3;
+  padding: 15px;
+}
+#loginPanel table .loginInput {
+  width: 150px;
+}
+#loginPanel table #lblError {
+  width: 100%;
+  text-align: center;
+  float: right;
+  color: #8b0000;
+}
+#navbar {
+  width: 100%;
+  min-width: 1050px;
+  background: linear-gradient(to bottom right, #d6e9f4, #ffffff);
+  height: 60px;
+  border-bottom: 3px double #0072b3;
+}
+#navbar ul {
+  margin: auto;
+  padding: 0;
+  list-style: none;
+  height: 100%;
+  width: 65%;
+  float: left;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+#navbar ul li {
+  display: inline;
+  float: left;
+  height: 100%;
+  padding-right: 15px;
+  margin-top: 23px;
+}
+#navbar ul li img {
+  margin-top: -28px;
+  height: 50px;
+  padding: 10px;
+}
+#navbar ul li h1 {
+  margin: 0;
+  font-size: 13pt;
+  font-weight: normal;
+}
+#navbar ul li a {
+  padding-top: 20px;
+  text-decoration: none;
+  color: black;
+  font-size: 13pt;
+}
+#navbar ul li a:hover {
+  color: #0072b3;
+}
+#navbar span {
+  text-align: center;
+  padding: 15px;
+}
+#navbar span a:visited {
+  color: #0000ff;
+}
+body {
+  margin: 0 auto;
+  font-size: 9pt;
+}
+body #pageTitle {
+  width: 98%;
+  margin: auto;
+  min-width: 1050px;
+  text-align: center;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  padding-bottom: 10px;
+}
+body #pageTitle h2 {
+  margin: auto;
+}
+body .body-content {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.ui-state-active {
+  background: #0072b3;
+}
+#workOrderSearch {
+  width: 98%;
+  margin: auto;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  min-width: 1050px;
+}
+#workOrderSearch h3 {
+  color: white;
+  background-color: #0072b3 !important;
+  font-weight: bold;
+  font-size: 9pt;
+  height: 12px;
+}
+#workOrderSearch h3:focus {
+  outline: 0;
+}
+#workOrderSearch div {
+  height: 44px;
+  padding: 0;
+}
+#searchPanel {
+  width: 100%;
+  border-spacing: 0;
+}
+#searchPanel td {
+  text-align: center;
+}
+#searchPanel td #selJob {
+  width: 150px;
+}
+#searchPanel td #selSubBy {
+  width: 150px;
+}
+#searchPanel td span {
+  font-weight: bold;
+}
+#searchPanel td #txtDateFrom,
+#searchPanel td #txtDateTo {
+  width: 75px;
+}
+#searchPanel td div {
+  float: left;
+  display: table;
+  height: 42px;
+  /*2 less than parent div height*/
+}
+#searchPanel td div span {
+  display: table-cell;
+  vertical-align: middle;
+}
+#searchPanel td table {
+  border-spacing: 0;
+}
+#searchPanel td table td {
+  padding: 0;
+  text-align: right;
+  font-size: 9pt;
+}
+#searchPanel td #search {
+  cursor: pointer;
+}
+#searchPanel td #clear {
+  cursor: pointer;
+  outline: 0;
+  background: none;
+  border: none;
+  color: #0000ff;
+  font-size: 7pt;
+}
+#pageTable {
+  width: 98%;
+  margin: auto;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 1050px;
+  border: 1px solid #aaaaaa;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+#pageTable th {
+  background-color: #0072b3;
+  color: whitesmoke;
+  border-right: 1px solid #aaaaaa;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  font-size: 9pt;
+}
+#pageTable th:last-child {
+  border-right: none;
+}
+#pageTable th .sort {
+  height: 8px;
+  width: 8px;
+  padding-left: 5px;
+}
+#pageTable tr {
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  background-color: whitesmoke;
+  font-size: 9pt;
+}
+#pageTable tr:nth-child(odd) {
+  background-color: #d6e9f4;
+}
+#pageTable tr:hover {
+  background-color: lightGrey;
+  cursor: pointer;
+}
+#pageTable tr td {
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  border-right: 1px solid #aaaaaa;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#pageTable tr td:last-child {
+  border-right: none;
+}
+#pageTable tr td span {
+  -moz-user-select: text;
+  -ms-user-select: text;
+  -webkit-user-select: text;
+  user-select: text;
+  cursor: text;
+}
+.refDataSection {
+  vertical-align: top;
+}
+.refDataSection h4 {
+  margin: auto;
+  text-decoration: underline;
+  text-align: left;
+  width: 70%;
+  padding-left: 5px;
+  padding-bottom: 3px;
+  font-size: 1.2em;
+}
+.refDataSection .adminUsersTable,
+.refDataSection .adminReferenceDataTable {
+  width: 70%;
+  margin: auto;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #aaaaaa;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+.refDataSection .adminUsersTable th,
+.refDataSection .adminReferenceDataTable th {
+  background-color: #0072b3;
+  color: whitesmoke;
+  border-right: 1px solid #aaaaaa;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+.refDataSection .adminUsersTable th:last-child,
+.refDataSection .adminReferenceDataTable th:last-child {
+  border-right: none;
+  width: 20px;
+  cursor: default;
+}
+.refDataSection .adminUsersTable th .sort,
+.refDataSection .adminReferenceDataTable th .sort {
+  height: 8px;
+  width: 8px;
+  padding-left: 5px;
+}
+.refDataSection .adminUsersTable .adminAddValueRow td,
+.refDataSection .adminReferenceDataTable .adminAddValueRow td {
+  background-color: white;
+  border-bottom: 1px solid #aaaaaa;
+}
+.refDataSection .adminUsersTable tr,
+.refDataSection .adminReferenceDataTable tr {
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  background-color: whitesmoke;
+}
+.refDataSection .adminUsersTable tr:nth-child(odd),
+.refDataSection .adminReferenceDataTable tr:nth-child(odd) {
+  background-color: #d6e9f4;
+}
+.refDataSection .adminUsersTable tr:hover,
+.refDataSection .adminReferenceDataTable tr:hover {
+  background-color: lightGrey;
+}
+.refDataSection .adminUsersTable tr .ReferenceParentCell,
+.refDataSection .adminReferenceDataTable tr .ReferenceParentCell {
+  cursor: pointer;
+}
+.refDataSection .adminUsersTable tr .ReferenceParentCell span,
+.refDataSection .adminReferenceDataTable tr .ReferenceParentCell span {
+  cursor: pointer;
+}
+.refDataSection .adminUsersTable tr td,
+.refDataSection .adminReferenceDataTable tr td {
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  border-right: 1px solid #aaaaaa;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.refDataSection .adminUsersTable tr td:last-child,
+.refDataSection .adminReferenceDataTable tr td:last-child {
+  border-right: none;
+}
+.refDataSection .adminUsersTable tr td input,
+.refDataSection .adminReferenceDataTable tr td input {
+  width: 98%;
+}
+.refDataSection .adminUsersTable tr td span,
+.refDataSection .adminReferenceDataTable tr td span {
+  -moz-user-select: text;
+  -ms-user-select: text;
+  -webkit-user-select: text;
+  user-select: text;
+  cursor: text;
+}
+.refDataSection .adminUsersTable tr td .deleteRow,
+.refDataSection .adminReferenceDataTable tr td .deleteRow {
+  cursor: pointer;
+  background-image: url('/Content/images/ui-icons_cd0a0a_256x240.png');
+  width: 16px;
+  height: 16px;
+  border: none;
+  background-color: transparent;
+  margin: auto;
+}
+.adminUsersTable tr {
+  cursor: pointer;
+}
+.addRow {
+  cursor: pointer;
+  background: url('/Content/images/plus-16-green.png') no-repeat center;
+  background-size: 11px 11px;
+  margin: auto;
+  width: 16px;
+  height: 22px;
+}
+.fieldLabel {
+  white-space: nowrap;
+  font-weight: bold;
+  text-align: right;
+  vertical-align: top;
+}
+#dialogBtnDelete {
+  background: none;
+  border: none;
+  font-size: 1em;
+  color: #aaaaaa;
+  float: left;
+  outline: none;
+}
+.pageControlContainer {
+  background-color: white;
+  border-top: 1px solid #aaaaaa;
+}
+.pageControl {
+  width: 98%;
+  text-align: right;
+  margin: auto;
+}
+.pageControl img {
+  cursor: pointer;
+  height: 12px;
+  width: 12px;
+}
+.pageControl #leftHalf {
+  width: 50%;
+  float: left;
+  margin-top: -5px;
+}
+.pageControl #leftHalf #addNewWrap {
+  height: 20px;
+}
+.pageControl #leftHalf #addNewWrap #addNewBtnImg {
+  float: left;
+  cursor: pointer;
+}
+.pageControl #leftHalf #addNewWrap #addNewBtnTxt {
+  margin-top: 5px;
+  margin-left: 3px;
+  float: left;
+  cursor: pointer;
+}
+.pageControl #rightHalf {
+  width: 50%;
+  float: right;
+}
+.ErrorText {
+  color: #8b0000;
+}
+/*# sourceMappingURL=Grid.css.map */

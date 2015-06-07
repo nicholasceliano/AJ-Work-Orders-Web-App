@@ -1,0 +1,36 @@
+﻿
+<div id="loginPanel">
+    <h2>Log In</h2>
+
+    @using (@Ajax.BeginForm("LogIn", new AjaxOptions { HttpMethod = "Post" })) {
+    <table>
+        <tr>
+            <td colspan="2">
+                <span id="lblError">@ViewBag.Error</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Username:</span>
+            </td>
+            <td>
+                <input class="loginInput" name="username" type="email" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Password:</span>
+            </td>
+            <td>
+                <input class="loginInput" name="password" type="password" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Log In" style="float:right;" />
+            </td>
+        </tr>
+    </table>
+    }
+</div>
+
